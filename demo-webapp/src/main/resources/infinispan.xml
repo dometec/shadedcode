@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infinispan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:infinispan:config:5.1 http://www.infinispan.org/schemas/infinispan-config-5.1.xsd"
+	xmlns="urn:infinispan:config:5.1">
+
+	<global>
+		<globalJmxStatistics enabled="true"
+			allowDuplicateDomains="true"></globalJmxStatistics>
+		<transport clusterName="inapp-cluster"
+			distributedSyncTimeout="3000">
+			<properties>
+				<property name="configurationFile" value="infinispan-udp.cfg.xml" />
+			</properties>
+		</transport>
+		<shutdown hookBehavior="DONT_REGISTER" />
+	</global>
+
+	<namedCache name="auth-token-cache">
+		<jmxStatistics enabled="true" />
+		<eviction strategy="LRU" maxEntries="20000" />
+		<!-- Sei ore -->
+		<expiration lifespan="21600000" />
+		<storeAsBinary enabled="true" />
+		<clustering mode="replication">
+			<stateTransfer timeout="60000" fetchInMemoryState="true" />
+			<async />
+		</clustering>
+	</namedCache>
+
+	<namedCache name="current-call-cache">
+		<jmxStatistics enabled="true" />
+		<transaction transactionMode="TRANSACTIONAL" lockingMode="PESSIMISTIC"
+			transactionManagerLookupClass="org.infinispan.transaction.lookup.GenericTransactionManagerLookup"></transaction>
+		<locking isolationLevel="REPEATABLE_READ" useLockStriping="false" />
+		<eviction strategy="LRU" maxEntries="600" />
+		<!-- Due minuti -->
+		<expiration lifespan="120000" />
+		<storeAsBinary enabled="true" />
+		<clustering mode="replication">
+			<stateTransfer timeout="5000" fetchInMemoryState="true" />
+			<sync replTimeout="5000" />
+		</clustering>
+	</namedCache>
+
+</infinispan>

@@ -1,0 +1,23 @@
+<configuration scan="true" debug="false">
+
+	<contextName>demo-webapp</contextName>
+	<jmxConfigurator />
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${catalina.base}/logs/demo.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${catalina.base}/logs/demo.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+			<maxHistory>31</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date [%-25.-25thread] %-5level %logger{50} - %message%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="org.example.demo" level="TRACE" />
+
+	<root level="DEBUG">
+		<appender-ref ref="FILE" />
+	</root>
+
+</configuration>
