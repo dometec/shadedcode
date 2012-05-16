@@ -33,6 +33,7 @@
 		<a href="${pageContext.request.contextPath}/services/transactionalresource3">Transactional resource 3 - Insert 1 into table</a><br/>
 		<a href="${pageContext.request.contextPath}/services/transactionalresource4">Transactional resource 4 - Insert 1 into table and throw an exception</a><br/>
 		<a href="${pageContext.request.contextPath}/services/transactionalresource6">Transactional resource 6 - Insert 1 into table call another insert that required a RequiredNew Transaction and throw an exception</a><br/>
+		<a href="${pageContext.request.contextPath}/application.wadl">application.wadl</a>
 		<br/>
 		
 		<c:if test="${empty it.user}">

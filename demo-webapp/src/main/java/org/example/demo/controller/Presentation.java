@@ -1,6 +1,6 @@
 package org.example.demo.controller;
 
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.IOException;
 
 import javax.ws.rs.GET;
@@ -35,11 +35,8 @@ public class Presentation {
 	@GET
 	@Produces("application/pdf")
 	public Response getUserDetailsPdf() throws IOException {
-		FileInputStream stream = new FileInputStream("src/main/resources/present.pdf");
-		byte[] data = new byte[8196];
-		stream.read(data);
-		stream.close();
-		return Response.ok(data).header("Content-Disposition", "attachment; filename=Presentazione.pdf").build();
+		File pdf = new File("src/main/resources/present.pdf");
+		return Response.ok(pdf).header("Content-Disposition", "attachment; filename=Presentazione.pdf").build();
 	}
 
 	@XmlRootElement(name = "user")
