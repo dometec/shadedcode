@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.transaction.TransactionManager;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
@@ -40,14 +39,14 @@ public class UniqueCallOnClusterInterceptor implements MethodInterceptor {
 
 				if (!success) {
 					logger.info("Non posso effettuare il lock sul cluster per la chiave {}.", key);
-					return Response.status(Status.CONFLICT).entity("Another call with same parameter is in progress.").build();
+					return Response.status(429).entity("Another call with same parameter is in progress.").build();
 				}
 			}
 
 			String runningServer = (String) keyCallOnClusterService.get(key);
 			if (runningServer != null) {
 				logger.info("Chiamata già in corso, server {}.", runningServer);
-				return Response.status(Status.CONFLICT).entity("Another call with same parameter is in progress.").build();
+				return Response.status(429).entity("Another call with same parameter is in progress.").build();
 			}
 
 			keyCallOnClusterService.put(key, "todo-hostname");
