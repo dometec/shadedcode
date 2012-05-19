@@ -9,9 +9,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import org.example.demo.auth.AuthenticatedUser;
-import org.example.demo.auth.DemoPrincipal;
-import org.example.demo.auth.aop.ApplicationRolesAllowed;
 import org.example.demo.service.AccountStore;
 
 import com.sun.jersey.api.view.Viewable;
@@ -21,9 +18,6 @@ import com.sun.jersey.spi.resource.PerRequest;
 @Path("services/balance")
 public class Balance {
 
-	@AuthenticatedUser
-	private DemoPrincipal user;
-	
 	@Inject
 	private AccountStore acocuntStore;
 
@@ -32,7 +26,6 @@ public class Balance {
 	}
 
 	@GET
-	@ApplicationRolesAllowed
 	@Produces("text/html; charset=utf-8")
 	public Response getAccountBalance() throws URISyntaxException {
 		Map<String, Integer> accounts = acocuntStore.getAll();

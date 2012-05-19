@@ -1,0 +1,1 @@
+fromuser=user1&touser=user2&amount=1

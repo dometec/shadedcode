@@ -26,8 +26,20 @@
 		
 		<br/>
 		<br/>
-		Move 1 from user1 to user2
-		<a href="${pageContext.request.contextPath}/services/moveamount?fromuser=user1&touser=user2&amount=1">move!</a>
+		Move € 1 from user1 to user2
+		<form action="${pageContext.request.contextPath}/services/moveamount" method="post">
+			<label for="fromuser">From user:</label>
+			<input name="fromuser" value="user1">
+			<br/>
+			<label for="touser">To user:</label>
+			<input name="touser" value="user2">
+			<br/>
+			<label for="amount">Amount:</label>
+			<input name="amount" value="1">
+			<br/>
+			<input type="submit" value="Move!">
+		</form>
+		
 		<br/>
 		
 	</body>
