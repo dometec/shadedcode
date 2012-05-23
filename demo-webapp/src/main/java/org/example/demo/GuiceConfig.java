@@ -30,6 +30,9 @@ import com.google.inject.Module;
 import com.google.inject.matcher.Matchers;
 import com.google.inject.name.Names;
 import com.google.inject.servlet.GuiceServletContextListener;
+import com.sun.jersey.api.core.PackagesResourceConfig;
+import com.sun.jersey.api.core.ResourceConfig;
+import com.sun.jersey.api.json.JSONConfiguration;
 import com.sun.jersey.guice.JerseyServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
 import com.sun.jersey.spi.container.servlet.ServletContainer;
@@ -44,13 +47,19 @@ public class GuiceConfig extends GuiceServletContextListener {
 			protected void configureServlets() {
 
 				Map<String, String> params = new HashMap<String, String>();
-				params.put("com.sun.jersey.config.feature.ImplicitViewables", "false");
-				params.put("com.sun.jersey.config.feature.Redirect", "true");
-				params.put("com.sun.jersey.api.json.POJOMappingFeature", "true");
-				params.put("com.sun.jersey.config.property.packages", "org.example.demo");
-				params.put(ServletContainer.PROPERTY_WEB_PAGE_CONTENT_REGEX, ".*\\.(htm|html|css|js|jsp|png|jpeg|jpg|gif)$");
-				params.put("com.sun.jersey.spi.container.ResourceFilters",
+
+				params.put(ResourceConfig.FEATURE_TRACE, "true");
+				params.put(ResourceConfig.FEATURE_TRACE_PER_REQUEST, "true");
+				params.put(ResourceConfig.FEATURE_IMPLICIT_VIEWABLES, "false");
+				params.put(ResourceConfig.FEATURE_REDIRECT, "true");
+				params.put(ResourceConfig.PROPERTY_RESOURCE_FILTER_FACTORIES,
 						"com.sun.jersey.api.container.filter.RolesAllowedResourceFilterFactory");
+
+				params.put(PackagesResourceConfig.PROPERTY_PACKAGES, "org.example.demo");
+
+				params.put(ServletContainer.PROPERTY_WEB_PAGE_CONTENT_REGEX, ".*\\.(htm|html|css|js|jsp|png|jpeg|jpg|gif)$");
+
+				params.put(JSONConfiguration.FEATURE_POJO_MAPPING, "true");
 
 				filter("/*").through(GuiceContainer.class, params);
 
