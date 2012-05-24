@@ -25,7 +25,7 @@ public class ProtectedResourceByContainer4Roles {
 	@Produces("text/plain")
 	@RolesAllowed("devinappclient")
 	public String getString() {
-		return "ProtectedResource4: Hello World dev, " + securityContext.getUserPrincipal().getName();
+		return "ProtectedResource4: Hello World devinappclient, " + securityContext.getUserPrincipal().getName();
 	}
 
 }

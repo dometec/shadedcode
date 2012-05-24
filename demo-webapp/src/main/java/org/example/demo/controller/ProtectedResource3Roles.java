@@ -26,7 +26,7 @@ public class ProtectedResource3Roles {
 	@Produces("text/plain")
 	@ApplicationRolesAllowed("devinappclient")
 	public String getString() {
-		return "ProtectedResource3: Hello World dev, " + user.getUsername();
+		return "ProtectedResource3: Hello World devinappclient, " + user.getUsername();
 	}
 
 }
