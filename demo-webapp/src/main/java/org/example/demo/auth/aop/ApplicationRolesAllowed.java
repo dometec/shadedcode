@@ -1,7 +1,9 @@
 package org.example.demo.auth.aop;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * 
@@ -11,6 +13,7 @@ import java.lang.annotation.RetentionPolicy;
  * @since 09/05/2012
  */
 @Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.TYPE, ElementType.METHOD })
 public @interface ApplicationRolesAllowed {
 	public String[] value() default "*";
 }

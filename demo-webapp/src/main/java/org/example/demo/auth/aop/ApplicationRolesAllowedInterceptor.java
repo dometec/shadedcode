@@ -12,6 +12,12 @@ import org.example.demo.auth.NotAuthenticatedException;
 import org.example.demo.auth.NotAuthorizedException;
 import org.example.demo.service.UserStore;
 
+/**
+ * Manage user access based on roles assigned by internal authentication (application managed security)
+ * 
+ * @author dometec
+ * @since 09/05/2012
+ */
 public class ApplicationRolesAllowedInterceptor implements MethodInterceptor {
 
 	@Inject
