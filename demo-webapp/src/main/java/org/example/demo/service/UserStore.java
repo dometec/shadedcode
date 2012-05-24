@@ -38,11 +38,7 @@ public class UserStore {
 		if (userdb.containsKey(username) && userdb.get(username).equals(password))
 			return new DemoPrincipal(username);
 
-		Principal principal = realmUserStore.authenticate(username, password);
-		if (principal == null)
-			return null;
-
-		return new DemoPrincipal(principal, realmUserStore.getRoles(principal));
+		return realmUserStore.authenticate(username, password);
 
 	}
 

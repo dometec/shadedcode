@@ -51,8 +51,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-security</artifactId>
+			<groupId>org.eclipse.jetty.aggregate</groupId>
+			<artifactId>jetty-all-server</artifactId>
 			<version>${jetty.version}</version>
 			<scope>provided</scope>
 		</dependency>
@@ -152,7 +152,14 @@
 							<config>${basedir}/src/main/resources/jetty-realm.properties</config>
 						</loginService>
 					</loginServices>
-					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<scanIntervalSeconds>1000</scanIntervalSeconds>
+					<webAppConfig>
+						<serverClasses>
+							<serverClass implementation="java.lang.String">
+								-org.eclipse.jetty.
+							</serverClass>
+						</serverClasses>
+					</webAppConfig>
 				</configuration>
 			</plugin>
 

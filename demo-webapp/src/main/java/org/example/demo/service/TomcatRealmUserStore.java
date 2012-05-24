@@ -43,9 +43,8 @@ public class TomcatRealmUserStore implements RealmUserStore {
 		}
 	}
 
-	 
 	@Override
-	public Principal authenticate(String user, String password) {
+	public DemoPrincipal authenticate(String user, String password) {
 
 		try {
 
@@ -53,7 +52,8 @@ public class TomcatRealmUserStore implements RealmUserStore {
 			if (principal == null)
 				return null;
 
-			return new DemoPrincipal(principal, getRoles(principal));
+			GenericPrincipal genericPrincipal = (GenericPrincipal) principal;
+			return new DemoPrincipal(principal, genericPrincipal.getRoles());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,16 +73,6 @@ public class TomcatRealmUserStore implements RealmUserStore {
 
 		return new DemoPrincipal(principal);
 
-	}
-
-	@Override
-	public String[] getRoles(Principal principal) {
-
-		if (!(principal instanceof GenericPrincipal))
-			return null;
-
-		GenericPrincipal genericPrincipal = (GenericPrincipal) principal;
-		return genericPrincipal.getRoles();
 	}
 
 }

@@ -6,10 +6,8 @@ import org.example.demo.auth.DemoPrincipal;
 
 public interface RealmUserStore {
 
-	Principal authenticate(String user, String password);
+	DemoPrincipal authenticate(String user, String password);
 
 	DemoPrincipal toDemoPrincipal(Principal principal);
-
-	String[] getRoles(Principal principal);
 
 }
