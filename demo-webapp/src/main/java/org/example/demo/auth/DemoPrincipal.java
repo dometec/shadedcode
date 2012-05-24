@@ -3,6 +3,13 @@ package org.example.demo.auth;
 import java.io.Serializable;
 import java.security.Principal;
 
+/**
+ * 
+ * Represent the user of this demo application
+ * 
+ * @author dometec
+ *
+ */
 public class DemoPrincipal implements Principal, Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -1,5 +1,11 @@
 package org.example.demo.auth;
 
+/**
+ * Response when resource required a logged user.
+ * 
+ * @author dometec
+ *
+ */
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.ExceptionMapper;

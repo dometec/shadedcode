@@ -14,6 +14,14 @@ import com.sun.jersey.server.impl.inject.AbstractHttpContextInjectable;
 import com.sun.jersey.spi.inject.Injectable;
 import com.sun.jersey.spi.inject.PerRequestTypeInjectableProvider;
 
+/**
+ *
+ * This provider inject into field of resources class annotated with @AuthenticatedUser 
+ * the DemoPrincipal represent the current users. Null if nobody is logged 
+ * 
+ * @author dometec
+ *
+ */
 @Provider
 public class AuthenticatedUserProvider extends PerRequestTypeInjectableProvider<AuthenticatedUser, DemoPrincipal> {
 

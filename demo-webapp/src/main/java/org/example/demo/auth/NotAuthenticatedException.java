@@ -1,5 +1,11 @@
 package org.example.demo.auth;
 
+/**
+ * Resource required a logged user.
+ * 
+ * @author dometec
+ *
+ */
 public class NotAuthenticatedException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;

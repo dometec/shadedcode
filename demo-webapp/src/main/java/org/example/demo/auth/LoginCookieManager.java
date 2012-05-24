@@ -10,6 +10,12 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 
 import org.example.demo.service.cluster.TokenStore;
 
+/**
+ * Manage the marshalling/unmarshalling of login-token cookie
+ * 
+ * @author dometec
+ *
+ */
 @Singleton
 public class LoginCookieManager {
 
