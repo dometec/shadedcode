@@ -3,6 +3,7 @@ package org.example.demo.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -13,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
+import javax.ws.rs.core.Variant;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.sun.jersey.spi.resource.PerRequest;
@@ -22,7 +24,7 @@ import com.sun.jersey.spi.resource.PerRequest;
 public class Presentation {
 
 	@Context
-	Request request;
+	private Request request;
 
 	private UserDetails userdet;
 
@@ -39,13 +41,16 @@ public class Presentation {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Response getUserDetails() {
 
+		List<Variant> variants = Variant.mediaTypes(MediaType.APPLICATION_JSON_TYPE, MediaType.APPLICATION_XML_TYPE).add().build();
+		Variant selectedVariant = request.selectVariant(variants);
+
 		EntityTag entityTag = new EntityTag(userdet.getVersion().toString());
 
 		ResponseBuilder evaluatePreconditions = request.evaluatePreconditions(entityTag);
 		if (evaluatePreconditions != null)
 			return evaluatePreconditions.build();
 
-		return Response.ok(userdet).tag(entityTag).build();
+		return Response.ok(userdet).tag(entityTag).variant(selectedVariant).build();
 	}
 
 	@GET
