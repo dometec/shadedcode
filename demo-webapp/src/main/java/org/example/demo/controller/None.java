@@ -2,6 +2,7 @@ package org.example.demo.controller;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
@@ -20,4 +21,8 @@ public class None {
 		return Response.noContent().build();
 	}
 
+	@POST
+	public Response postNone() {
+		return Response.noContent().build();
+	}
 }
